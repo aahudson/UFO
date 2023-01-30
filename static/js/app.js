@@ -64,11 +64,21 @@ function updateFilters() {
   let filterId = changedElement.attr("id");
   console.log(filterId);
 
-  if (elementValue) {
-    filters[filterId] = elementValue;
-  }
-  else {
-    delete filters[filterId];
+  // Check if the filterId is the date filter
+  if (filterId === "datetime") {
+    // Check if a date was entered
+    if (elementValue) {
+      filters[filterId] = elementValue;
+    } else {
+      delete filters[filterId];
+    }
+  } else {
+    // Add/update the filter for all other elements
+    if (elementValue) {
+      filters[filterId] = elementValue;
+    } else {
+      delete filters[filterId];
+    }
   }
 
   filterTable();
